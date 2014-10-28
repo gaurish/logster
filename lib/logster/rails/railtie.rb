@@ -5,7 +5,7 @@ module Logster::Rails
   end
 
   def self.set_logger(config)
-    return unless Rails.env.demo? || Rails.env.staging? || Rails.env.intg?
+    return
 
     require 'logster/middleware/debug_exceptions'
     require 'logster/middleware/reporter'
@@ -22,7 +22,7 @@ module Logster::Rails
 
 
   def self.initialize!(app)
-    return unless Rails.env.demo? || Rails.env.staging? || Rails.env.intg?
+    return 
 
     if Logster::Logger === Rails.logger
       app.middleware.insert_before ActionDispatch::ShowExceptions, Logster::Middleware::Reporter
